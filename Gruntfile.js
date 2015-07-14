@@ -16,19 +16,24 @@ module.exports = function(grunt){
 		      banner: '<!-- I am a banner <% includes.files.dest %> -->'
 		    }
 		  }
-		}
+		},
 		// includes: {
-	 //      build: {
-	 //        cwd: 'site',
-	 //        src: 'origin/html/*',
-	 //        dest: 'asset/',
-	 //        options: {
-	 //          flatten: true,
-	 //          includePath: 'include',
-	 //          banner: '<!-- Site built using grunt includes! -->\n'
-	 //        }
-	 //      }
-	 //    }
+		 //      build: {
+		 //        cwd: 'site',
+		 //        src: 'origin/html/*',
+		 //        dest: 'asset/',
+		 //        options: {
+		 //          flatten: true,
+		 //          includePath: 'include',
+		 //          banner: '<!-- Site built using grunt includes! -->\n'
+		 //        }
+		 //      }
+		 //    }
+		watch: {
+			files: 'origin/html/**',
+			tasks: ['clean', 'includes']
+				
+		}
 	});
 
 	// Load local tasks.
@@ -37,8 +42,9 @@ module.exports = function(grunt){
 	// 加载插件
 	grunt.loadNpmTasks('grunt-includes');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// 默认被执行的任务列表
-	grunt.registerTask('default', ['clean', 'includes']);
+	grunt.registerTask('default', ['watch', 'clean', 'includes']);
 }
 
